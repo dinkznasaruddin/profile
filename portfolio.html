@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Nasaruddin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+            background: var(--bg-light);
+        }
+
+        /* Main Content */
+        main {
+            padding: 60px 0;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .page-description {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .portfolio-item {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-item h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .portfolio-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .portfolio-item p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            border: 1px solid #e5e7eb;
+        }
+
+        .portfolio-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination button {
+            padding: 10px 15px;
+            background: var(--white);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 40px;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .pagination button.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination .page-info {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin: 0 10px;
+        }
+
+        /* Hidden class for pagination */
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav a {
+                padding: 15px 15px;
+                font-size: 0.9rem;
+            }
+
+            .filter-buttons {
+                gap: 10px;
+            }
+
+            .filter-btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>My Portfolio</h1>
+            <p class="subtitle">Projects & Work Showcase</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="portfolio.html" class="active">Portfolio</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h2 class="page-title">Featured Projects</h2>
+            <p class="page-description">Showcase of my work in web development, application development, and IT project management</p>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="app">Application</button>
+                <button class="filter-btn" data-filter="management">Project Management</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/dashboard-lontara.png" alt="Dashboard Lontara+">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Dashboard Lontara+</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Website Monitoring Data untuk Aplikasi Lontara+ yang menyediakan visualisasi data dan analytics untuk memantau penggunaan aplikasi Lontara+ secara real-time dengan dashboard yang informatif dan user-friendly.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/Makassar-bebas-sampah.png" alt="Website Makassar Bebas Sampah">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Makassar Bebas Sampah</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Website Data Bank Sampah dan TPS3R yang mengelola informasi bank sampah, tempat pengolahan sampah reduce, reuse, recycle (TPS3R), serta monitoring pengelolaan sampah di Kota Makassar.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/makassar-tanggap-bencana.png" alt="Website Makassar Tanggap Bencana">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Makassar Tanggap Bencana</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Website Makassar Tanggap Bencana yang menyediakan informasi, edukasi, dan sistem pelaporan untuk mitigasi dan tanggap darurat bencana di wilayah Kota Makassar dengan fitur pemetaan zona rawan bencana.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/homepage-lontara.png" alt="Homepage Lontara+">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Homepage Lontara+</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Landing page aplikasi Lontara+ sebagai Super Apps Kota Makassar yang mengintegrasikan berbagai layanan digital pemerintah dalam satu platform mobile application untuk kemudahan akses masyarakat.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/website-bunda-paud.png" alt="Website Bunda PAUD Makassar">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Website Bunda PAUD Makassar</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Portal informasi dan manajemen program Bunda PAUD Kota Makassar yang mengelola data lembaga PAUD, pembinaan guru, dan monitoring perkembangan pendidikan anak usia dini di wilayah Makassar.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/dwp.png" alt="Website DWP Makassar">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Website DWP Makassar</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Website resmi Dharma Wanita Persatuan Kota Makassar sebagai wadah komunikasi, informasi kegiatan, program pemberdayaan perempuan, dan dokumentasi aktivitas organisasi DWP di lingkungan Pemkot Makassar.</p>
+                    </div>
+                </div>
+
+                <!-- Project 7 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/kuota-spmb-makassar.png" alt="Website Kuota SPMB Makassar">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Website Kuota SPMB Makassar</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Sistem informasi pengelolaan kuota dan pendaftaran Seleksi Penerimaan Murid Baru (SPMB) yang menyediakan transparansi data kuota, monitoring pendaftaran, dan informasi jalur penerimaan siswa baru di sekolah-sekolah Kota Makassar.</p>
+                    </div>
+                </div>
+
+                <!-- Project 8 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/seleksi-bumd-makassar.png" alt="Website Seleksi BUMD Makassar">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Website Seleksi BUMD Makassar</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Portal seleksi dan rekrutmen pegawai Badan Usaha Milik Daerah (BUMD) Kota Makassar yang mengelola pendaftaran, seleksi online, pengumuman hasil, dan administrasi kepegawaian BUMD secara terintegrasi dan transparan.</p>
+                    </div>
+                </div>
+
+                <!-- Project 9 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/sim-disnaker.png" alt="SIM Disnaker Makassar">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>SIM Disnaker Makassar</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Sistem Informasi Manajemen Dinas Tenaga Kerja yang mengelola data ketenagakerjaan, pencari kerja, lowongan pekerjaan, pelatihan kerja, dan layanan penempatan tenaga kerja di Kota Makassar secara digital dan terintegrasi.</p>
+                    </div>
+                </div>
+
+                <!-- Project 10 -->
+                <div class="portfolio-item" data-category="web app">
+                    <div class="portfolio-image">
+                        <img src="assets/img/portfolio/web-sop-ortala.png" alt="Website SOP Ortala Makassar">
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Website SOP Ortala Makassar</h3>
+                        <div class="portfolio-meta">
+                            <span class="meta-item">📅 2025</span>
+                            <span class="meta-item">👥 Diskominfo Makassar</span>
+                        </div>
+                        <p>Website Standar Operasional Prosedur Organisasi dan Tata Laksana (SOP Ortala) Kota Makassar yang menyediakan dokumentasi, akses, dan pengelolaan SOP pelayanan publik serta prosedur kerja di lingkungan Pemerintah Kota Makassar.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button id="prevPage" disabled>← Previous</button>
+                <span class="page-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                <button id="nextPage" disabled>Next →</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nasaruddin. All rights reserved.</p>
+            <p><a href="index.html">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Pagination settings
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        let currentFilter = 'all';
+        
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const prevButton = document.getElementById('prevPage');
+        const nextButton = document.getElementById('nextPage');
+        const currentPageSpan = document.getElementById('currentPage');
+        const totalPagesSpan = document.getElementById('totalPages');
+
+        // Get filtered items
+        function getFilteredItems() {
+            return Array.from(portfolioItems).filter(item => {
+                if (currentFilter === 'all') return true;
+                const categories = item.getAttribute('data-category');
+                return categories.includes(currentFilter);
+            });
+        }
+
+        // Display items for current page
+        function displayPage(page) {
+            const filteredItems = getFilteredItems();
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            
+            // Hide all items first
+            portfolioItems.forEach(item => {
+                item.classList.add('hidden');
+            });
+
+            // Calculate start and end indices
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            // Show items for current page
+            filteredItems.slice(startIndex, endIndex).forEach(item => {
+                item.classList.remove('hidden');
+            });
+
+            // Update pagination UI
+            currentPageSpan.textContent = page;
+            totalPagesSpan.textContent = totalPages;
+            
+            // Update button states
+            prevButton.disabled = page === 1;
+            nextButton.disabled = page === totalPages || totalPages === 0;
+
+            // Scroll to top of portfolio section
+            document.querySelector('.portfolio-grid').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Filter functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                currentFilter = button.getAttribute('data-filter');
+                currentPage = 1; // Reset to first page when filter changes
+                displayPage(currentPage);
+            });
+        });
+
+        // Pagination button handlers
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayPage(currentPage);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            const filteredItems = getFilteredItems();
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayPage(currentPage);
+            }
+        });
+
+        // Initial display
+        displayPage(1);
+    </script>
+</body>
+</html>
