@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasaruddin - IT Project Manager & Web Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect fill="rgba(255,255,255,0.03)" width="50" height="50"/><rect fill="rgba(255,255,255,0.03)" x="50" y="50" width="50" height="50"/></svg>');
+            opacity: 0.5;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 20px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .location {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            background: var(--bg-light);
+        }
+
+        /* Sections */
+        section {
+            background: var(--white);
+            margin: 40px auto;
+            padding: 60px 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .highlight-card {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .highlight-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateX(5px);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .company-info h3 {
+            color: var(--text-dark);
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .company-info .role {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .experience-item ul {
+            margin-left: 20px;
+            color: var(--text-light);
+        }
+
+        .experience-item li {
+            margin-bottom: 8px;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: var(--white);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        /* Education Section */
+        .education-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .education-content h3 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .education-content .degree {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .education-content .period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 8px 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skill-category li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            nav a {
+                padding: 15px 15px;
+                font-size: 0.9rem;
+            }
+
+            section {
+                margin: 20px auto;
+                padding: 40px 15px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .company-header {
+                flex-direction: column;
+            }
+
+            .education-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="profile-img">
+                <img src="assets/img/foto.jpg" alt="Nasaruddin">
+            </div>
+            <h1>Nasaruddin</h1>
+            <p class="subtitle">Experienced IT Project Manager | Web Developer | Ex Telkomsel</p>
+            <p class="location">● Makassar, South Sulawesi, Indonesia</p>
+            <span class="header-badge">8+ Years Experience</span>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>IT Project Manager and Application Development Specialist with 8+ years of experience in information technology, project management, and system development across government institutions and private companies.</p>
+                
+                <p><strong>Current Roles:</strong></p>
+                <ul>
+                    <li><strong>Application Development Expert</strong> at Dinas Komunikasi dan Informatika Kota Makassar - focusing on application architecture, data integration, information system development, and SDLC execution</li>
+                    <li><strong>PBL Instructor</strong> at Kementerian Ketenagakerjaan - teaching UI/UX Design and Web Development</li>
+                </ul>
+
+                <p><strong>Previous Experience:</strong> Product Owner, Project Officer, Sales Marketing Manager, and Branch Manager at Telkomsel Distribution Centre (Kisel Group)</p>
+
+                <p><strong>Core Competencies:</strong> SDLC, Scrum & Agile Project Management, Government Digital Services Solutions, Data Monitoring & Quality Assurance, Team Leadership & Cross-functional Collaboration</p>
+
+                <p><strong>Education:</strong> Bachelor's in Informatics Engineering | Currently pursuing Master's in Computer Science</p>
+
+                <div class="about-highlights">
+                    <div class="highlight-card">
+                        <h3>8+</h3>
+                        <p>Years of Experience</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>10+</h3>
+                        <p>Major Projects</p>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>20+</h3>
+                        <p>Technical Skills</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2 class="section-title">Professional Experience</h2>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Dinas Komunikasi dan Informatika Kota Makassar</h3>
+                        <p class="role">Tenaga Ahli Application Development</p>
+                    </div>
+                    <span class="period">Jan 2024 - Present (2 years)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · Contract</p>
+                <div class="skills-tags">
+                    <span class="skill-tag">Application Architecture</span>
+                    <span class="skill-tag">Databases</span>
+                    <span class="skill-tag">System Integration</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Dinas Komunikasi dan Informatika Kota Makassar</h3>
+                        <p class="role">Tenaga Ahli Sistem Informasi</p>
+                    </div>
+                    <span class="period">Feb 2023 - Dec 2023 (11 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia</p>
+                <div class="skills-tags">
+                    <span class="skill-tag">Software Requirements</span>
+                    <span class="skill-tag">SDLC</span>
+                    <span class="skill-tag">System Analysis</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Kementerian Ketenagakerjaan</h3>
+                        <p class="role">Instruktur Project Base Learning (PBL)</p>
+                    </div>
+                    <span class="period">Sep 2025 - Present (4 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · Hybrid · Contract</p>
+                <p style="color: var(--text-light);">Kelas UI/UX Design dan Web Development</p>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Weekendcode.id</h3>
+                        <p class="role">IT Project Manager</p>
+                    </div>
+                    <span class="period">Jan 2022 - Present (4 years)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · Hybrid · Self-employed</p>
+                <div class="skills-tags">
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">SDLC</span>
+                    <span class="skill-tag">Project Management</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Booble Mitra Kreatif</h3>
+                        <p class="role">Product Owner</p>
+                    </div>
+                    <span class="period">Jan 2023 - Apr 2023 (4 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · Hybrid · Full-time</p>
+                <ul>
+                    <li>IT Project Management</li>
+                    <li>Lead Tim Programmer</li>
+                    <li>Software Quality Assurance</li>
+                    <li>Product Presentation</li>
+                    <li>Product Quality</li>
+                </ul>
+                <div class="skills-tags">
+                    <span class="skill-tag">Presentation Skills</span>
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">SDLC</span>
+                    <span class="skill-tag">Software Quality Assurance</span>
+                    <span class="skill-tag">Manual Testing</span>
+                    <span class="skill-tag">Agile Methodologies</span>
+                    <span class="skill-tag">Product Management</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Booble Mitra Kreatif</h3>
+                        <p class="role">Project Officer</p>
+                    </div>
+                    <span class="period">Jun 2022 - Jan 2023 (8 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar · Full-time</p>
+                <ul>
+                    <li>Monitoring project work plan</li>
+                    <li>Quality Assurance</li>
+                    <li>Make presentations to customers</li>
+                </ul>
+                <div class="skills-tags">
+                    <span class="skill-tag">Quality Assurance</span>
+                    <span class="skill-tag">Scrum</span>
+                    <span class="skill-tag">SDLC</span>
+                    <span class="skill-tag">SaaS</span>
+                    <span class="skill-tag">Agile Methodologies</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Booble Mitra Kreatif</h3>
+                        <p class="role">Sales Marketing Manager</p>
+                    </div>
+                    <span class="period">Jan 2021 - Jul 2022 (1 year 7 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · Full-time</p>
+                <ul>
+                    <li>Make the right sales strategy with market segments</li>
+                    <li>Handling and Manage Sales Team for target achievement</li>
+                    <li>Plan and create marketing content and ads Activation</li>
+                    <li>Visit and maintain relations with existing customers</li>
+                    <li>Handling Trainer and customer service tim (After Sales)</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Kisel Group</h3>
+                        <p class="role">Branch Manager Rappocini</p>
+                    </div>
+                    <span class="period">Jun 2019 - Oct 2020 (1 year 5 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · On-site · Full-time</p>
+                <p style="color: var(--text-light);">Handling and Manage satu cabang Telkomsel Distribution Centre. Bertanggung jawab terhadap semua tim (Sales, admin & Finance) dan Memaintance hubunguan baik dengan mitra outlet telkomsel.</p>
+                <div class="skills-tags">
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Retail Sales</span>
+                    <span class="skill-tag">Indirect sales</span>
+                    <span class="skill-tag">Sales Management</span>
+                    <span class="skill-tag">Leadership</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Kisel Group</h3>
+                        <p class="role">Sales Support Officer</p>
+                    </div>
+                    <span class="period">May 2018 - Oct 2019 (1 year 6 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Gowa, South Sulawesi, Indonesia</p>
+                <p style="color: var(--text-light);">Create monitoring data untuk pencapaian target sales, di semua cabang Telkomsel Distribution Centre untuk Cluster Gowa. Melakukan Analisa dan memberikan Suggest Strategy yang yang bisa di lakukan untuk mengamankan target KPI Distributor.</p>
+                <div class="skills-tags">
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Sales</span>
+                    <span class="skill-tag">Data Entry</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Kisel Group</h3>
+                        <p class="role">Direct Sales Supervisor</p>
+                    </div>
+                    <span class="period">Jul 2017 - May 2018 (11 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Gowa, South Sulawesi, Indonesia · On-site</p>
+                <p style="color: var(--text-light);">Handling and Manage Tim Direct Sales (Sales Agent, Sales Community & Coorperate) untuk wilayah Gowa, Takalar, Malino & Jeneponto</p>
+                <div class="skills-tags">
+                    <span class="skill-tag">Microsoft Excel</span>
+                    <span class="skill-tag">Sales</span>
+                    <span class="skill-tag">Sales Management</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Team Leadership</span>
+                    <span class="skill-tag">Sales Presentations</span>
+                    <span class="skill-tag">Direct Sales</span>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company-header">
+                    <div class="company-info">
+                        <h3>Telkomsel</h3>
+                        <p class="role">Web Programmer and Data Analyst</p>
+                    </div>
+                    <span class="period">Apr 2014 - May 2017 (3 years 2 months)</span>
+                </div>
+                <p style="color: var(--text-light); margin-bottom: 10px;">Makassar, South Sulawesi, Indonesia · Contract</p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2 class="section-title">Education</h2>
+            
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>Universitas Teknologi AKBA Makassar</h3>
+                    <p class="degree">Master's degree, Computer Science</p>
+                    <p class="period">Currently pursuing</p>
+                </div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>Universitas Islam Negeri Alauddin</h3>
+                    <p class="degree">Bachelor's Degree, Informatics Engineering</p>
+                    <p class="period">Jan 2009 - Dec 2013</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Project Management</h3>
+                    <ul>
+                        <li>Scrum & Agile Methodologies</li>
+                        <li>Software Development Life Cycle (SDLC)</li>
+                        <li>Requirements Analysis</li>
+                        <li>Quality Assurance</li>
+                        <li>Product Management</li>
+                        <li>Team Leadership</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Application Architecture</li>
+                        <li>Database Design</li>
+                        <li>Web Development</li>
+                        <li>System Integration</li>
+                        <li>Data Analysis</li>
+                        <li>Software Quality Assurance</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Business & Sales</h3>
+                    <ul>
+                        <li>Sales Management</li>
+                        <li>Sales Strategy</li>
+                        <li>Retail Sales</li>
+                        <li>Direct & Indirect Sales</li>
+                        <li>Customer Relations</li>
+                        <li>Presentation Skills</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Teaching & Training</h3>
+                    <ul>
+                        <li>UI/UX Design Instruction</li>
+                        <li>Web Development Training</li>
+                        <li>Project-Based Learning</li>
+                        <li>Technical Mentoring</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">●</div>
+                    <h3>Location</h3>
+                    <p>Makassar, South Sulawesi<br>Indonesia</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">in</div>
+                    <h3>LinkedIn</h3>
+                    <a href=" https://www.linkedin.com/in/dinkznasaruddin/" target="_blank">Connect on LinkedIn</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">{ }</div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/dinkznasaruddin" target="_blank">View My Work</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Nasaruddin. All rights reserved.</p>
+            <p>Experienced IT Project Manager | Web Developer | Ex Telkomsel</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
